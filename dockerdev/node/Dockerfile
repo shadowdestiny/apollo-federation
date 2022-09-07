@@ -5,7 +5,8 @@ WORKDIR /usr/src/app
 RUN mkdir -p /app && chown node: /app
 
 RUN npm install -g prisma \
-    && npm install -g @2fd/graphdoc
+    && npm install -g @2fd/graphdoc \
+    && npm i nodemon -g
 
 RUN apk add --no-cache bash
 

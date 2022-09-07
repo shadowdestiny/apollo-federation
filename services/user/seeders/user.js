@@ -1,14 +1,13 @@
-import { PrismaClient } from '../mariaDB/generated/client'
+const {PrismaClient} = require('../mariaDB/generated/client')
 const prisma = new PrismaClient()
-
 
 
 async function main() {
 
     const user = await prisma.user.createMany({
         data: [
-            { id: 1, email: 'lrm.programador@gmail.com', name: 'Luis' },
-            { id: 2, email: 'info@cualquiercosa.com', name: 'Lorem' },
+            { id: 3, email: 'lrm2.programador@gmail.com', name: 'Luis' },
+            { id: 4, email: 'info2@cualquiercosa.com', name: 'Lorem' },
         ]
     })
     console.log(user);

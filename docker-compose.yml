@@ -13,8 +13,8 @@ services:
       - ./:/var/www
     ports:
       - ${GATEWAY_USER_PORT}:4000
-      - ${ROLES_USER_PORT}:4001
-      - ${ROLES_SERVICE_PORT}:4002
+      - ${SERVICE_USER_PORT}:4001
+      - ${SERVICE_POST_PORT}:4002
     links:
       - db1
       - db2
@@ -26,6 +26,7 @@ services:
     environment:
       DATABASE_URL_1: ${DATABASE_URL_1}
       DATABASE_URL_2: ${DATABASE_URL_2}
+      GATEWAY_USER_PORT: ${GATEWAY_USER_PORT}
 
   db1:
     image: mariadb

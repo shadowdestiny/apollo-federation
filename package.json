@@ -4,9 +4,11 @@
   "description": "Demostracion de apollo federation con 2 microservicios de prueba",
   "main": "gateway.js",
   "scripts": {
-    "start-gateway": "nodemon gateway.js"
+    "start-gateway": "nodemon gateway.js",
+    "start-service-user": "nodemon services/user/index.js",
+    "start-services": "concurrently \"npm:start-service-*\""
   },
-  "author": "",
+  "author": "Luis Marin",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "latest",
@@ -17,13 +19,13 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@apollo/gateway": "latest",
+    "@apollo/gateway": "^2.1.1",
     "@prisma/client": "^4.3.1",
-    "apollo-server": "latest",
-    "apollo-server-core": "^3.10.2",
+    "apollo-server": "^3.10.2",
     "apollo-server-express": "^3.10.2",
     "env-cmd": "^10.1.0",
     "express": "^4.18.1",
-    "graphql": "^16.6.0"
+    "graphql": "^16.6.0",
+    "nodemon": "^2.0.19"
   }
 }

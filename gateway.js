@@ -1,5 +1,5 @@
-// const { ApolloServer } = require("apollo-server");
-const { ApolloServer } = require("apollo-server-express");
+const { ApolloServer } = require("apollo-server");
+//const { ApolloServer } = require("apollo-server-express");
 const { ApolloGateway } = require("@apollo/gateway");
 
 const gateway = new ApolloGateway({
@@ -10,7 +10,7 @@ const gateway = new ApolloGateway({
   // real usage-based metrics.
   serviceList: [
     { name: "users", url: "http://localhost:4001/graphql" },
-    { name: "roles", url: "http://localhost:4002/graphql" },
+   // { name: "roles", url: "http://localhost:4002/graphql" },
   ],
 
   // Experimental: Enabling this enables the query plan view in Playground.
