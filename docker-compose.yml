@@ -1,0 +1,62 @@
+version: '3.4'
+
+services:
+
+  nodejs:
+    image: node:14-alpine
+    build:
+      context: ./dockerdev/node
+      dockerfile: Dockerfile
+      target: nodejs
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    ports:
+      - ${GATEWAY_USER_PORT}:4000
+      - ${ROLES_USER_PORT}:4001
+      - ${ROLES_SERVICE_PORT}:4002
+    links:
+      - db1
+      - db2
+    networks:
+      backend:
+        ipv4_address: ${GA_NODE_IP}
+    command: >
+      bash -c "sleep infinity"
+    environment:
+      DATABASE_URL_1: ${DATABASE_URL_1}
+      DATABASE_URL_2: ${DATABASE_URL_2}
+
+  db1:
+    image: mariadb
+    restart: always
+    volumes:
+      - ./todo-mariadb-data1:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASS_1}
+      - MYSQL_DATABASE=${DB_NAME_1}
+    ports:
+      - ${DB_PORT_1}:3306
+    networks:
+      backend:
+        ipv4_address: ${GA_DB_HOST_1}
+
+  db2:
+    image: mariadb
+    restart: always
+    volumes:
+      - ./todo-mariadb-data2:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASS_2}
+      - MYSQL_DATABASE=${DB_NAME_2}
+    ports:
+      - ${DB_PORT_2}:3306
+    networks:
+      backend:
+        ipv4_address: ${GA_DB_HOST_2}
+
+networks:
+  backend:
+    ipam:
+      config:
+        - subnet: ${GA_BACKEND_SUBNET}
