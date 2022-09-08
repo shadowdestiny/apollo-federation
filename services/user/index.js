@@ -1,7 +1,7 @@
 const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
 const http = require("http");
-const { buildFederatedSchema } = require("@apollo/federation");
+const { buildFederatedSchema, buildSubgraphSchema} = require("@apollo/federation");
 
 const {typeDefs} = require("./Schema/TypeDefs");
 const {resolvers} = require("./Schema/Resolvers");
@@ -12,7 +12,7 @@ let apolloServer = null;
 
 async function startServer() {
     apolloServer = new ApolloServer({
-        schema: buildFederatedSchema([
+        schema: buildSubgraphSchema([
             {
                 typeDefs,
                 resolvers

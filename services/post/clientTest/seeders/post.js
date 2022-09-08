@@ -1,4 +1,4 @@
-import { PrismaClient } from '../mariaDB/generated/client'
+const {PrismaClient} = require('../../mariaDB/generated/client')
 const prisma = new PrismaClient()
 
 
