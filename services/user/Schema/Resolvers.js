@@ -1,26 +1,10 @@
 const { PrismaClient } = require('../mariaDB/generated/client')
 const prisma = new PrismaClient()
 
-const users = [
-    {
-        id: "1",
-        name: "Ada Lovelace",
-        birthDate: "1815-12-10",
-        username: "@ada"
-    },
-    {
-        id: "2",
-        name: "Alan Turing",
-        birthDate: "1912-06-23",
-        username: "@complete"
-    }
-];
-
 
 const resolvers = {
     Query: {
         me: () => {
-            // return users
             return prisma.user.findMany()
         },
         getAllUsers: () => {
@@ -52,6 +36,17 @@ const resolvers = {
             return prisma.user.findUnique({
                 where: {
                     id: parseInt(post.user_id)
+                }
+            })
+        }
+    },
+
+    Mutation: {
+        insertUser(object, {name, email}) {
+            return prisma.user.create({
+                data: {
+                    name,
+                    email
                 }
             })
         }

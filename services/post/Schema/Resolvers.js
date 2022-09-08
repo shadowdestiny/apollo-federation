@@ -10,11 +10,6 @@ const resolvers = {
         }
     },
 
-    Review: {
-        author(review) {
-            return { __typename: "Users", id: review.authorID };
-        }
-    },
     User: {
         posts(user) {
             const post = prisma.post.findMany({

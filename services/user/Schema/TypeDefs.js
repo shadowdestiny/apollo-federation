@@ -30,6 +30,9 @@ const typeDefs = gql `
     }
     
     # Mutations
+    type Mutation {
+        insertUser(name: String, email: String): User!
+    }
     
 `;
 
