@@ -11,7 +11,7 @@ const typeDefs = gql `
         id: ID!
         title: String
         content: String
-        user_post: User
+        #user_post: User
         user_id: Int
     }
     
